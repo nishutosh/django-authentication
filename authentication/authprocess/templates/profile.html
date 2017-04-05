@@ -1,0 +1,9 @@
+
+{%extends "base.html"%}
+{%block title%}
+<title>Home</title>
+{%endblock%}
+{%block box%}
+    <p id="head">Hi  {{username}}</p>
+    <p><a href={%url "logout" %}> Logout</a> </p>
+{%endblock%}
