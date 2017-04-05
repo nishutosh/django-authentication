@@ -1,5 +1,6 @@
 from django.shortcuts import render,redirect
 from authprocess.models import *
+from django.contrib.auth.hashers import make_password,check_password
 
 
     
@@ -18,7 +19,7 @@ def register(request):
             message="username already exist"
             return render(request,"register.html",{"message":message})
         else:
-            users.objects.create(username=user,password=passwd)
+            users.objects.create(username=user,password=make_password(passwd))
             message="You have registered now login"
             return render(request,"login.html",{"message":message})
     else:
@@ -32,7 +33,7 @@ def login(request):
         logpass=request.POST["password"]
         if(users.objects.filter(username=loguser).exists()):
             check=users.objects.get(username=loguser)
-            if check.password==logpass and check.is_active:
+            if check_password(logpass,check.password) and check.is_active:
                 request.session["username"]=loguser
                 return redirect("home")
             else:
