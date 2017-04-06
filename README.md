@@ -1,5 +1,5 @@
-# django-custom-authentication
+# django-authentication
 
-this is django custom made basic authentication using sessions
+This is django custom made basic authentication 
 
 ![UI](/images/pic.png)
